@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+apply from: '../gradle/dependencies.gradle'
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.ebilling"
+        minSdk 22
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion versions.compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation dependenciesList.androidx_core
+    implementation dependenciesList.compose_ui
+    implementation dependenciesList.compose_material
+    implementation dependenciesList.compose_tooling_preview
+    implementation dependenciesList.lifecyle_runtime
+    implementation dependenciesList.activity_compose
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.android_test
+    androidTestImplementation testDependencies.androidx_espresso
+    androidTestImplementation testDependencies.compose_ui_test
+    debugImplementation testDependencies.compose_ui_tooling
+    debugImplementation testDependencies.compose_ui_test_manifest
+
+    // ViewModel
+    implementation dependenciesList.viewmodel_compose_with_lifecycle
+    // ViewModel utilities for Compose
+    implementation dependenciesList.lifecycle_viewmodel_compose
+    // Saved state module for ViewModel
+    implementation dependenciesList.lifecycle_viewmodel_savedstate
+
+    implementation dependenciesList.hilt_android
+    kapt dependenciesList.hilt_compiler
+}
+
+kapt {
+    correctErrorTypes true
+}

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">eBilling</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="not_registered_signup">Not Registered, Click to Sign up</string>
+</resources>
