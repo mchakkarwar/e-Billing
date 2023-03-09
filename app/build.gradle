@@ -56,6 +56,7 @@ dependencies {
     implementation dependenciesList.compose_tooling_preview
     implementation dependenciesList.lifecyle_runtime
     implementation dependenciesList.activity_compose
+    implementation project(path: ':core')
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.android_test
     androidTestImplementation testDependencies.androidx_espresso
