@@ -5,4 +5,10 @@
     <string name="enter_password">Enter Password</string>
     <string name="login">Login</string>
     <string name="not_registered_signup">Not Registered, Click to Sign up</string>
+    <string-array name="drawer_items">
+        <item>Register Product</item>
+        <item>Search Product</item>
+        <item>Delete Product</item>
+        <item>Edit Product</item>
+    </string-array>
 </resources>

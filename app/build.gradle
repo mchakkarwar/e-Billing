@@ -73,6 +73,7 @@ dependencies {
 
     implementation dependenciesList.hilt_android
     kapt dependenciesList.hilt_compiler
+    implementation dependenciesList.navigation_compose
 }
 
 kapt {

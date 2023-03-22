@@ -10,7 +10,8 @@ ext {
             androidx_espresso_core   : '3.5.1',
             lifecycle_version        : '2.5.1',
             hilt_version             : '2.44',
-            hilt_compiler            : '2.44'
+            hilt_compiler            : '2.44',
+            nav_version              : '2.5.3'
 
     ]
 
@@ -25,8 +26,8 @@ ext {
             lifecycle_viewmodel_savedstate  : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle_version",
             lifecycle_viewmodel_compose     : "androidx.lifecycle:lifecycle-viewmodel-compose:$versions.lifecycle_version",
             hilt_android                    : "com.google.dagger:hilt-android:$versions.hilt_version",
-            hilt_compiler                   : "com.google.dagger:hilt-compiler:$versions.hilt_compiler"
-
+            hilt_compiler                   : "com.google.dagger:hilt-compiler:$versions.hilt_compiler",
+            navigation_compose              : "androidx.navigation:navigation-compose:$versions.nav_version"
     ]
 
     testDependencies = [
