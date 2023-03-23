@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringArrayResource
@@ -30,7 +31,9 @@ fun HomeScreen(
     navController: NavHostController,
     scaffoldState: ScaffoldState,
     coroutineScope: CoroutineScope,
-    navigationMenuClicked: MutableState<String>
+    navigationMenuClicked: MutableState<String>,
+    appBarTitle: State<String>
+
 ) {
     EBillingTheme {
         Scaffold(
@@ -41,15 +44,13 @@ fun HomeScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = stringResource(id = com.example.ebilling.R.string.home_screen),
-                            modifier = Modifier.padding(25.dp),
-                            color = Color.White
+                            text = appBarTitle.value
                         )
                     },
                     navigationIcon = {
                         IconButton(onClick = {
                             coroutineScope.launch {
-                               scaffoldState.drawerState.open()
+                                scaffoldState.drawerState.open()
                             }
                         }) {
                             Icon(Icons.Filled.Menu, contentDescription = null)

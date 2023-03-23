@@ -2,7 +2,6 @@ package com.example.ebilling
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -49,25 +49,37 @@ class HomeActivity : ComponentActivity() {
                         mutableStateOf("Home")
                     }
                     navController.enableOnBackPressed(true)
+                    val homeTitle = stringResource(id = R.string.home_screen)
+                    val appBarTitle = remember { mutableStateOf(homeTitle) }
                     NavHost(navController = navController, startDestination = "Register Product") {
                         composable("Register Product") {
                             navController.popBackStack()
                             RegisterProduct()
+                            appBarTitle.value = "Register Product"
                         }
                         composable("Search Product") {
                             navController.popBackStack()
                             SearchProduct()
+                            appBarTitle.value = "Search Product"
                         }
                         composable("Delete Product") {
                             navController.popBackStack()
                             DeleteProduct()
+                            appBarTitle.value = "Delete Product"
                         }
                         composable("Edit Product") {
                             navController.popBackStack()
                             EditProduct()
+                            appBarTitle.value = "Edit Product"
                         }
                     }
-                    HomeScreen(navController, scaffoldState, coroutineScope, navigationMenuClicked)
+                    HomeScreen(
+                        navController,
+                        scaffoldState,
+                        coroutineScope,
+                        navigationMenuClicked,
+                        appBarTitle
+                    )
                 }
             }
         }
