@@ -2,6 +2,7 @@ package com.example.ebilling
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -25,7 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.HomeScreen
 import com.example.NavDrawer
-import com.example.NavigationDrawer
 import com.example.ebilling.ui.DeleteProduct
 import com.example.ebilling.ui.EditProduct
 import com.example.ebilling.ui.RegisterProduct
@@ -49,11 +48,24 @@ class HomeActivity : ComponentActivity() {
                     val navigationMenuClicked = remember {
                         mutableStateOf("Home")
                     }
+                    navController.enableOnBackPressed(true)
                     NavHost(navController = navController, startDestination = "Register Product") {
-                        composable("Register Product") { RegisterProduct() }
-                        composable("Search Product") { SearchProduct() }
-                        composable("Delete Product") { DeleteProduct() }
-                        composable("Edit Product") { EditProduct() }
+                        composable("Register Product") {
+                            navController.popBackStack()
+                            RegisterProduct()
+                        }
+                        composable("Search Product") {
+                            navController.popBackStack()
+                            SearchProduct()
+                        }
+                        composable("Delete Product") {
+                            navController.popBackStack()
+                            DeleteProduct()
+                        }
+                        composable("Edit Product") {
+                            navController.popBackStack()
+                            EditProduct()
+                        }
                     }
                     HomeScreen(navController, scaffoldState, coroutineScope, navigationMenuClicked)
                 }
