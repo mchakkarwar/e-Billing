@@ -6,6 +6,7 @@
     <string name="login">Login</string>
     <string name="not_registered_signup">Not Registered, Click to Sign up</string>
     <string name="home_screen">Home Screen</string>
+    <string name="product_id">Product Id:</string>
     <string-array name="drawer_items">
         <item>Register Product</item>
         <item>Search Product</item>

@@ -25,10 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.HomeScreen
 import com.example.NavDrawer
-import com.example.ebilling.ui.DeleteProduct
-import com.example.ebilling.ui.EditProduct
-import com.example.ebilling.ui.RegisterProduct
-import com.example.ebilling.ui.SearchProduct
+import com.example.ebilling.ui.Screens
 import com.example.ebilling.ui.theme.EBillingTheme
 
 class HomeActivity : ComponentActivity() {
@@ -46,31 +43,34 @@ class HomeActivity : ComponentActivity() {
                     val scaffoldState =
                         rememberScaffoldState(rememberDrawerState(DrawerValue.Closed));
                     val navigationMenuClicked = remember {
-                        mutableStateOf("Home")
+                        mutableStateOf(Screens.DashboardScreen().screenName)
                     }
                     navController.enableOnBackPressed(true)
                     val homeTitle = stringResource(id = R.string.home_screen)
                     val appBarTitle = remember { mutableStateOf(homeTitle) }
-                    NavHost(navController = navController, startDestination = "Register Product") {
-                        composable("Register Product") {
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screens.RegisterProductScreen().screenName
+                    ) {
+                        composable(Screens.DashboardScreen().screenName) {
                             navController.popBackStack()
-                            RegisterProduct()
-                            appBarTitle.value = "Register Product"
+                            appBarTitle.value = Screens.DashboardScreen().screenName
                         }
-                        composable("Search Product") {
+                        composable(Screens.RegisterProductScreen().screenName) {
                             navController.popBackStack()
-                            SearchProduct()
-                            appBarTitle.value = "Search Product"
+                            appBarTitle.value = Screens.RegisterProductScreen().screenName
                         }
-                        composable("Delete Product") {
+                        composable(Screens.SearchProductScreen().screenName) {
                             navController.popBackStack()
-                            DeleteProduct()
-                            appBarTitle.value = "Delete Product"
+                            appBarTitle.value = Screens.SearchProductScreen().screenName
                         }
-                        composable("Edit Product") {
+                        composable(Screens.DeleteProductScreen().screenName) {
                             navController.popBackStack()
-                            EditProduct()
-                            appBarTitle.value = "Edit Product"
+                            appBarTitle.value = Screens.DeleteProductScreen().screenName
+                        }
+                        composable(Screens.EditProductScreen().screenName) {
+                            navController.popBackStack()
+                            appBarTitle.value = Screens.EditProductScreen().screenName
                         }
                     }
                     HomeScreen(
